@@ -44,8 +44,11 @@ class Sorter {
     var imageData = ctx.createImageData(canvas.width, canvas.height);
 
     for (let i = 0; i < canvas.width; i++) {
-      for (let j = 0; j < canvas.height; j++) {
-        setColorIndicesForCord(i, j, canvas.width, randomRGB(), imageData.data);
+      const rgb = randomRGB();
+      let y = 0;
+      while (y < canvas.height) {
+        setColorIndicesForCord(i, y, canvas.width, rgb, imageData.data);
+        y++;
       }
     }
 
