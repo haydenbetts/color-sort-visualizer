@@ -1,0 +1,25 @@
+{
+  "name": "color-sort-visualizer",
+  "version": "1.0.0",
+  "description": "[![GitHub version](https://img.shields.io/badge/version-v1.0.0-blue.svg)](https://github.com/haydenbetts/color-sort-visualizer) [![License](https://img.shields.io/github/license/yilber/readme-boilerplate.svg)](https://github.com/haydenbetts/color-sort-visualizer/blob/master/LICENSE)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "parcel src/index.html",
+    "build": "parcel build src/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haydenbetts/color-sort-visualizer.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/haydenbetts/color-sort-visualizer/issues"
+  },
+  "homepage": "https://github.com/haydenbetts/color-sort-visualizer#readme",
+  "devDependencies": {
+    "parcel-bundler": "^1.12.4"
+  }
+}
