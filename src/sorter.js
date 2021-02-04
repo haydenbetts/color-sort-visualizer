@@ -3,8 +3,14 @@ function random(min, max) {
   return min + Math.floor((max - min) * Math.random());
 }
 
-function randomRGB() {
-  return [random(0, 255), random(0, 255), random(0, 255), 255];
+function randomRGB(i = 1) {
+  return [random(0, 255), random(0, 255), random(0, 255), 255].map((elt) =>
+    Math.floor(elt * i)
+  );
+}
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 const setColorIndicesForCord = (x, y, width, rgb, data) => {
@@ -56,12 +62,12 @@ class Sorter {
       .getImageData(0, 0, this.canvas.width, this.canvas.height);
 
     const indices = getRowIndices(imageData.data, this.canvas.width);
-    for (let i = 0; i < 1; i++) {
+    for (let i = 0; i < indices.length; i++) {
       const sorted = mergesort(imageData.data, indices[i][0], indices[i][1]);
-      for (let j = 0; j < sorted.length; j++) {
-        imageData[i + j] = sorted[i];
+      for (let j = indices[i][0]; j < indices[i][1]; j++) {
+        imageData[j] = sorted[j];
       }
-      this.canvas.getContext("2d").putImageData(imageData, 0, 0);
+      this.canvas.getContext("2d").putImageData(imageData, 0, i);
     }
   }
 
