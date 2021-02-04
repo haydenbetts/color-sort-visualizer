@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;500&display=swap');
+
+:root {
+    --main-heading-color: rgb(37, 39, 41);
+    --main-background-color: rgb(98, 144, 195);
+    --main-background-color-300: rgb(98, 131, 195);
+    --font-serif: 'Roboto Slab Bold', serif;
+    --muted-text-opacity: .;
+    --white: rgba(224, 231, 255);
+    --white-300: rgba(249, 249, 249);
+    --inner-content-width: 1000px;
+    --border-radius: .25rem;
+    --text-gray: rgb(55, 65, 81);
+}
+
+* {
+    font-family: 'Roboto', 'sans-serif';
+}
+
+body {
+    margin: 0;
+    background: rgb(243, 244, 246);
+}
+
+h1 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    color: var(--white)
+    
+}
+
+.heading-container {
+    padding: 4rem 1rem 4rem 1rem;
+    background-color: var(--main-background-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.heading-text {
+    color: var(--main-heading-color);
+}
+
+.subheading-text {
+    color: var(--white);
+    font-weight: 100;
+}
+
+.form-container {
+    border-radius: var(--border-radius);
+    margin: 1rem auto 1rem auto;
+    padding: 1rem 0rem 1rem 1rem;
+    width: var(--inner-content-width);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    background: white;
+}
+
+#form-submit {
+    margin: .5rem auto .5rem auto;
+    width: var(--inner-content-width);
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+#form-container-description {
+    font-weight: 100;
+    width: 45%;
+    text-align: left;
+}
+
+.form-container-description-row {
+    padding-top: .5rem;
+}
+
+b {
+    font-weight: 400;
+}
+
+#well {
+    background: rgb(243, 244, 246);
+}
+
+#form {
+    width: 75%;
+}
+
+#form div.fieldset:not(:first-child) {
+    padding-top: 1rem;
+}
+
+.canvas-container {
+    margin: 1rem auto 1rem auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+fieldset {
+    padding: 0;
+    border: none;
+}
+
+label {
+    font-weight: 100;
+}
+
+button {
+    padding: .5rem;
+    border-radius: var(--border-radius);
+    transition: background-color .25s;
+    cursor: pointer;
+}
+
+.primary-button {
+    background: var(--main-background-color);
+    color: white;
+    border: none;
+}
+
+.secondary-button {
+    background: white;
+    color: var( --text-gray);
+    border: none;
+}
+
+.primary-button:hover {
+    background: var(--main-background-color-300);
+}
+
+.secondary-button:hover {
+    background: var(--white-300);
+}

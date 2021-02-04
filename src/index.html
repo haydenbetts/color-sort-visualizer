@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorful</title>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <link  rel="stylesheet" type="text/css" href="layout.css" />
+</head>
+<body>
+    <div class="heading-container">
+        <h1 class="font-serif">Colorful</h1>
+        <h3 class="subheading-text">Fundamental sorting algorithms visualized with pixel buffers</h3>
+    </div>
+    <div id="well">
+    <div class="form-container">
+        <div id="form-container-description">
+            <div><b>Decide how you'd like to sort</b></div>
+        </div>
+        <div id="form">
+            <div class="fieldset">
+                <fieldset id="algorithm">
+                    <div><b>Algorithms</b></div>
+                    <div class="form-container-description-row">
+                    <input type="radio" name="algorithm" id="merge-sort" value="merge-sort" >
+                    <label for="merge-sort">Merge Sort</label>
+                    </div>
+                    <div class="form-container-description-row">
+                    <input type="radio" name="algorithm" id="quick-sort" value="quick-sort">
+                    <label for="quick-sort">Quicksort</label>
+                    </div>
+                </fieldset>
+            </div>
+            <div class="fieldset">
+                <fieldset id="order">
+                    <div><b>Order</b></div>
+                    <div class="form-container-description-row">
+                    <input type="radio" name="order" id="ascending" value="ascending" name="group2">
+                    <label for="ascending">Ascending</label>
+                    </div>
+                    <div class="form-container-description-row">
+                    <input type="radio" name="order" id="descending" value="descending" name="group2">
+                    <label for="descending">Descending</label>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+    <div id="form-submit">
+        <button type="button" id="randomize" class="secondary-button">
+            Randomize
+        </button>
+        <div style="margin-left: 1rem;">
+        <button type="button" id="sort" class="primary-button">
+            Sort
+        </button>
+        </div>
+    </div>
+    <div class="canvas-container">
+        <canvas width="1000" height="1000"> </canvas>
+    </div>
+    </div>
+</body>
+<script src="index.js"></script>
+</html>
