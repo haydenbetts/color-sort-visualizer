@@ -65,13 +65,30 @@ class Sorter {
       .getImageData(0, 0, this.canvas.width, this.canvas.height);
 
     const indices = getRowIndices(imageData.data, this.canvas.width);
-    for (let i = 0; i < indices.length; i++) {
-      const sorted = mergesort(imageData.data, indices[i][0], indices[i][1]);
-      for (let j = indices[i][0]; j < indices[i][1]; j++) {
-        imageData[j] = sorted[j];
-      }
-      this.canvas.getContext("2d").putImageData(imageData, 0, i);
+    const sorted = mergesort(imageData.data, 0, imageData.data.length - 1);
+
+    console.log(sorted);
+
+    for (let i = 0; i < sorted.length; i += 4) {
+      sorted[i + 3] = 255;
     }
+    imageData.data = sorted;
+    this.canvas
+      .getContext("2d")
+      .clearRect(0, 0, this.canvas.width, this.canvas.height);
+    const id = this.canvas
+      .getContext("2d")
+      .createImageData(this.canvas.width, this.canvas.height);
+    id.data = sorted;
+
+    this.canvas.getContext("2d").putImageData(id, 0, 0);
+    // for (let i = 0; i < indices.length; i++) {
+    //   const sorted = mergesort(imageData.data);
+    //   imageData.data = sorted;
+    //   console.log("finished sort");
+    //   console.log(indices[i][0]);
+    //   this.canvas.getContext("2d").putImageData(imageData, 0, 0);
+    // }
   }
 
   sort(algorithm, direction) {
