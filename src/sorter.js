@@ -67,7 +67,7 @@ class Sorter {
     var imageData = this.canvas
       .getContext("2d")
       .getImageData(0, 0, this.canvas.width, this.canvas.height);
-    mergesort(imageData.data, (d) => {
+    mergesort(imageData.data, ROW_WIDTH, (d) => {
       let _this = this;
       _this.canvas
         .getContext("2d")
