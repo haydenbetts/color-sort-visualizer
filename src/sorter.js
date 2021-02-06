@@ -32,6 +32,8 @@ const getRowIndices = (data, width) => {
   return indices;
 };
 
+const ROW_WIDTH = 4; //px
+
 class Sorter {
   constructor(canvas) {
     this.canvas = canvas;
@@ -43,12 +45,14 @@ class Sorter {
     var ctx = canvas.getContext("2d");
     var imageData = ctx.createImageData(canvas.width, canvas.height);
 
-    for (let i = 0; i < canvas.width; i++) {
+    for (let i = 0; i < canvas.height; i += ROW_WIDTH) {
       const rgb = randomRGB();
-      let y = 0;
-      while (y < canvas.height) {
-        setColorIndicesForCord(i, y, canvas.width, rgb, imageData.data);
-        y++;
+      let x = 0;
+      while (x < canvas.width) {
+        for (let j = i; j < i + ROW_WIDTH; j++) {
+          setColorIndicesForCord(x, j, canvas.width, rgb, imageData.data);
+        }
+        x++;
       }
     }
 
@@ -63,15 +67,14 @@ class Sorter {
     var imageData = this.canvas
       .getContext("2d")
       .getImageData(0, 0, this.canvas.width, this.canvas.height);
-
-    const indices = getRowIndices(imageData.data, this.canvas.width);
-    for (let i = 0; i < indices.length; i++) {
-      const sorted = mergesort(imageData.data, indices[i][0], indices[i][1]);
-      for (let j = indices[i][0]; j < indices[i][1]; j++) {
-        imageData[j] = sorted[j];
-      }
-      this.canvas.getContext("2d").putImageData(imageData, 0, i);
-    }
+    mergesort(imageData.data, (d) => {
+      let _this = this;
+      _this.canvas
+        .getContext("2d")
+        .clearRect(0, 0, _this.canvas.width, _this.canvas.height);
+      // imageData.data = d;
+      _this.canvas.getContext("2d").putImageData(imageData, 0, 0);
+    });
   }
 
   sort(algorithm, direction) {
