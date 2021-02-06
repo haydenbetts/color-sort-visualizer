@@ -1,12 +1,16 @@
-const { sleep } = require("../util");
+const { sleep, rgb2hsv, luminosity } = require("../util");
 
 const sum = (array, low) => {
-  return array[low] + array[low + 1] + array[low + 2] + array[low + 3];
+  // return array[low] + array[low + 1] + array[low + 2] + array[low + 3];
+  // return luminosity(array, low);
+  const hsv = rgb2hsv(array[low], array[low + 1], array[low + 2]);
+  return hsv.h + hsv.s + hsv.v;
+  // .241 * r + .691 * g + .068 * b
 };
 
-const mergesort = (array, cb) => {
+const mergesort = async (array, cb) => {
   const helper = [];
-  sort(array, helper, 0, array.length - 1, cb);
+  await sort(array, helper, 0, array.length - 1, cb);
   return array;
 };
 
@@ -15,15 +19,21 @@ const sort = async (array, helper, low, high, cb) => {
     const absmid = Math.floor((high + 1 - low) / 2);
     const midgroup = absmid - (absmid % 4);
     const middle = low + midgroup - 1;
-    sort(array, helper, low, middle, cb);
-    if (high - low > 20000) cb(array);
-    // await sleep(500);
-    sort(array, helper, middle + 1, high, cb);
-    if (high - low > 20000) cb(array);
-    // await sleep(500);
+    await sort(array, helper, low, middle, cb);
+    if (high - low > 50000) {
+      cb(array);
+      await sleep(250);
+    }
+    await sort(array, helper, middle + 1, high, cb);
+    if (high - low > 50000) {
+      cb(array);
+      await sleep(250);
+    }
     merge(array, helper, low, middle, high);
-    if (high - low > 20000) cb(array);
-    // await sleep(5);
+    if (high - low > 50000) {
+      cb(array);
+      // await sleep();
+    }
   }
 };
 

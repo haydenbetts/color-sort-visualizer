@@ -42,17 +42,25 @@ class Sorter {
 
   init() {
     const canvas = this.canvas;
+    // this.canvas.width = canvas.parentElement.innerWidth;
+    this.canvas.width = canvas.parentElement.offsetWidth;
     var ctx = canvas.getContext("2d");
     var imageData = ctx.createImageData(canvas.width, canvas.height);
 
-    for (let i = 0; i < canvas.height; i += ROW_WIDTH) {
-      const rgb = randomRGB();
-      let x = 0;
-      while (x < canvas.width) {
-        for (let j = i; j < i + ROW_WIDTH; j++) {
-          setColorIndicesForCord(x, j, canvas.width, rgb, imageData.data);
-        }
-        x++;
+    // for (let i = 0; i < canvas.height; i += ROW_WIDTH) {
+    //   const rgb = randomRGB();
+    //   let x = 0;
+    //   while (x < canvas.width) {
+    //     for (let j = i; j < i + ROW_WIDTH; j++) {
+    //       setColorIndicesForCord(x, j, canvas.width, rgb, imageData.data);
+    //     }
+    //     x++;
+    //   }
+    // }
+
+    for (let i = 0; i < canvas.height; i++) {
+      for (let j = 0; j < canvas.width; j++) {
+        setColorIndicesForCord(j, i, canvas.width, randomRGB(), imageData.data);
       }
     }
 
@@ -72,7 +80,7 @@ class Sorter {
       _this.canvas
         .getContext("2d")
         .clearRect(0, 0, _this.canvas.width, _this.canvas.height);
-      // imageData.data = d;
+      imageData.data = d;
       _this.canvas.getContext("2d").putImageData(imageData, 0, 0);
     });
   }

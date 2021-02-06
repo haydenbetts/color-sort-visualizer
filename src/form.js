@@ -1,11 +1,12 @@
 class Form {
-  constructor(form, submit, sorter) {
+  constructor(form, submit, sorters) {
     this.form = form;
     this.submit = submit;
-    this.sorter = sorter;
+    this.sorters = sorters;
 
     this.state = {
-      algorithm: "merge-sort",
+      algorithmA: "merge-sort",
+      algorithmB: "merge-sort",
       order: "ascending",
     };
 
@@ -20,18 +21,24 @@ class Form {
       console.log(f.id);
       console.log(f.querySelector(`input[value="${this.state.algorithm}"]`));
       switch (f.id) {
-        case "algorithm":
-          const activeAlgo = f.querySelector(
-            `input[value="${this.state.algorithm}"]`
+        case "algorithm-a":
+          const algoA = f.querySelector(
+            `input[value="${this.state.algorithmA}"]`
           );
-          activeAlgo.checked = true;
+          algoA.checked = true;
           break;
-        case "order":
-          let activeOrder = f.querySelector(
-            `input[value="${this.state.order}"]`
+        case "algorithm-b":
+          const algoB = f.querySelector(
+            `input[value="${this.state.algorithmB}"]`
           );
-          activeOrder.checked = true;
+          algoB.checked = true;
           break;
+        // case "order":
+        //   let activeOrder = f.querySelector(
+        //     `input[value="${this.state.order}"]`
+        //   );
+        //   activeOrder.checked = true;
+        //   break;
       }
     }
   }
@@ -58,10 +65,12 @@ class Form {
       button.onclick = (e) => {
         switch (e.target.id) {
           case "sort":
-            this.sorter.sort(this.state.algorithm, this.state.order);
+            this.sorters[0].sort(this.state.algorithmA);
+            this.sorters[1].sort(this.state.algorithmB);
             break;
           case "randomize":
-            this.sorter.randomize();
+            this.sorters[0].randomize();
+            this.sorters[1].randomize();
             break;
         }
       };
