@@ -1,3 +1,5 @@
+const { snakeToCamel } = require("./util");
+
 class Form {
   constructor(form, submit, sorters) {
     this.form = form;
@@ -8,6 +10,7 @@ class Form {
       algorithmA: "merge-sort",
       algorithmB: "merge-sort",
       order: "ascending",
+      method: "hsv",
     };
 
     this.initializeState();
@@ -18,8 +21,6 @@ class Form {
     var fieldsets = this.form.querySelectorAll("fieldset");
 
     for (f of fieldsets) {
-      console.log(f.id);
-      console.log(f.querySelector(`input[value="${this.state.algorithm}"]`));
       switch (f.id) {
         case "algorithm-a":
           const algoA = f.querySelector(
@@ -32,6 +33,10 @@ class Form {
             `input[value="${this.state.algorithmB}"]`
           );
           algoB.checked = true;
+          break;
+        case "method":
+          let method = f.querySelector(`input[value="${this.state.method}"]`);
+          method.checked = true;
           break;
         // case "order":
         //   let activeOrder = f.querySelector(
@@ -48,12 +53,11 @@ class Form {
   }
 
   _attachInputListeners() {
-    console.log("input");
     const inputs = this.form.querySelectorAll("input");
     for (input of inputs) {
       input.onchange = (e) => {
-        if (this.state[e.target.name]) {
-          this.state[e.target.name] = e.target.value;
+        if (this.state[snakeToCamel(e.target.name)]) {
+          this.state[snakeToCamel(e.target.name)] = e.target.value;
         }
       };
     }
@@ -65,8 +69,8 @@ class Form {
       button.onclick = (e) => {
         switch (e.target.id) {
           case "sort":
-            this.sorters[0].sort(this.state.algorithmA);
-            this.sorters[1].sort(this.state.algorithmB);
+            this.sorters[0].sort(this.state.algorithmA, this.state.method);
+            this.sorters[1].sort(this.state.algorithmB, this.state.method);
             break;
           case "randomize":
             this.sorters[0].randomize();
@@ -78,7 +82,6 @@ class Form {
   }
 
   attachListeners() {
-    console.log("attempting to attach");
     this._attachInputListeners();
     this._attachSubmissionListeners();
   }

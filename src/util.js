@@ -1,9 +1,20 @@
+const snakeToCamel = (str) => {
+  return str
+    .split("-")
+    .map((elt, i) => (i > 0 ? elt[0].toUpperCase() + elt.slice(1) : elt))
+    .join("");
+};
+
 function sleep(time) {
   return new Promise((resolve) => setTimeout(resolve, time));
 }
 
-const luminosity = (array, low) => {
-  return 0.241 * array[low] + 0.691 * array[low + 1] + 0.068 * array[low + 2];
+const luminosity = (r, g, b) => {
+  return 0.241 * r + 0.691 * g + 0.068 * b;
+};
+
+const rgb = (r, g, b) => {
+  return r + g + b;
 };
 
 function rgb2hsv(r, g, b) {
@@ -35,14 +46,47 @@ function rgb2hsv(r, g, b) {
       h -= 1;
     }
   }
-  return {
-    h: Math.round(h * 360),
-    s: percentRoundFn(s * 100),
-    v: percentRoundFn(v * 100),
-  };
+  return [
+    Math.round(h * 360), //h
+    percentRoundFn(s * 100), //s
+    percentRoundFn(v * 100), //v
+  ];
 }
+
+const sum = (array, left, method) => {
+  switch (method) {
+    case "hsv":
+      const l = rgb2hsv(array[left], array[left + 1], array[left + 2]);
+      return l[0];
+    case "luminosity":
+      return luminosity(array[left], array[left + 1], array[left + 2]);
+    case "rgb":
+      return array[left];
+  }
+};
+
+const compare = (array, left, right, method) => {
+  switch (method) {
+    case "hsv":
+      const l = rgb2hsv(array[left], array[left + 1], array[left + 2]);
+      const r = rgb2hsv(array[right], array[right + 1], array[right + 2]);
+      return l[0] - r[0];
+    case "luminosity":
+      return (
+        luminosity(array[left], array[left + 1], array[left + 2]) -
+        luminosity(array[right], array[right + 1], array[right + 2])
+      );
+    case "rgb":
+      return array[left] - array[right];
+  }
+};
 
 module.exports = {
   sleep,
   rgb2hsv,
+  luminosity,
+  rgb,
+  compare,
+  sum,
+  snakeToCamel,
 };
