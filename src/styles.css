@@ -62,13 +62,7 @@ h1 {
 
 @media only screen and (max-width: 600px) {
     .form-container {
-        border-radius: var(--border-radius);
-        margin: 1rem auto 1rem auto;
-        padding: 1rem;
-        max-width: var(--inner-content-width);
-        display: flex;
-        flex-direction: row;
-        background: white;
+        /* padding: 1rem; */
     }
 }
 
@@ -88,6 +82,13 @@ h1 {
 
 .form-container-description-row {
     padding-top: 1rem;
+}
+
+@media only screen and (max-width: 600px) {
+    .form-container-description-row {
+        hyphens: auto;
+        text-align: justify;
+    }
 }
 
 b {
@@ -117,7 +118,7 @@ b {
     .form-col {
         display: flex;
         flex-direction: column;
-        margin-left: 25%;
+        margin-left: 2rem;
     }    
 }
 
@@ -222,6 +223,39 @@ canvas {
 	background: linear-gradient(-75deg, var(--main-background-color), #2193b3, #63a36b);
 	background-size: 400% 400%;
 	animation: gradient 20s ease infinite;
+}
+
+#social {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+}
+
+#gh {
+    cursor: pointer;
+    height: 32px;
+    width: 32px;
+}
+
+#tw {
+    cursor: pointer;
+    height: 28px;
+    margin-left: 1rem;
+}
+
+@media only screen and (max-width: 600px) {
+    #social {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        display: flex;
+        flex-direction: column;
+    }
+
+    #tw {
+        margin-top: 1rem;
+        margin-left: 0;
+    }
 }
 
 @keyframes gradient {
