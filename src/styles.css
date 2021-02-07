@@ -217,3 +217,21 @@ canvas {
 .canvas-container div {
     width: 50%;
 }
+
+.heading-container {
+	background: linear-gradient(-75deg, var(--main-background-color), #2193b3, #63a36b);
+	background-size: 400% 400%;
+	animation: gradient 20s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
