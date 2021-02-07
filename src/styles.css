@@ -47,21 +47,34 @@ h1 {
 .subheading-text {
     color: var(--white);
     font-weight: 100;
+    text-align: center;
 }
 
 .form-container {
     border-radius: var(--border-radius);
     margin: 1rem auto 1rem auto;
     padding:2rem;
-    width: var(--inner-content-width);
+    max-width: var(--inner-content-width);
     display: flex;
     flex-direction: row;
     background: white;
 }
 
+@media only screen and (max-width: 600px) {
+    .form-container {
+        border-radius: var(--border-radius);
+        margin: 1rem auto 1rem auto;
+        padding: 1rem;
+        max-width: var(--inner-content-width);
+        display: flex;
+        flex-direction: row;
+        background: white;
+    }
+}
+
 #form-submit {
     margin: .5rem auto .5rem auto;
-    width: var(--inner-content-width);
+    max-width: var(--inner-content-width);
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -100,6 +113,14 @@ b {
     margin-left: 50%;
 }
 
+@media only screen and (max-width: 600px) {
+    .form-col {
+        display: flex;
+        flex-direction: column;
+        margin-left: 25%;
+    }    
+}
+
 .form-col-n {
     padding-left: 4rem;
 }
@@ -109,7 +130,8 @@ b {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: var(--inner-content-width);
+    max-width: var(--inner-content-width);
+    overflow-x: hidden;
 }
 
 #performance {
@@ -180,6 +202,13 @@ button {
 .canvas-n {
     margin-left: 1rem;
 }
+
+@media only screen and (max-width: 600px) {
+    .canvas-n {
+        margin-left: .5rem;
+    }
+}
+
 
 canvas {
     /* border-radius: var(--border-radius); */
