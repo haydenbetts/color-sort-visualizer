@@ -1,4 +1,5 @@
-const { mergesort } = require("./algorithms");
+const { mergesort, quicksort } = require("./algorithms");
+
 function random(min, max) {
   return min + Math.floor((max - min) * Math.random());
 }
@@ -34,6 +35,14 @@ const getRowIndices = (data, width) => {
 
 const ROW_WIDTH = 4; //px
 
+const cb = (imageData, canvas) => {
+  return function (d) {
+    canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
+    imageData.data = d;
+    canvas.getContext("2d").putImageData(imageData, 0, 0);
+  };
+};
+
 class Sorter {
   constructor(canvas) {
     this.canvas = canvas;
@@ -42,17 +51,13 @@ class Sorter {
 
   init() {
     const canvas = this.canvas;
+    // this.canvas.width = canvas.parentElement.innerWidth;
+    this.canvas.width = canvas.parentElement.offsetWidth;
     var ctx = canvas.getContext("2d");
     var imageData = ctx.createImageData(canvas.width, canvas.height);
-
-    for (let i = 0; i < canvas.height; i += ROW_WIDTH) {
-      const rgb = randomRGB();
-      let x = 0;
-      while (x < canvas.width) {
-        for (let j = i; j < i + ROW_WIDTH; j++) {
-          setColorIndicesForCord(x, j, canvas.width, rgb, imageData.data);
-        }
-        x++;
+    for (let i = 0; i < canvas.height; i++) {
+      for (let j = 0; j < canvas.width; j++) {
+        setColorIndicesForCord(j, i, canvas.width, randomRGB(), imageData.data);
       }
     }
 
@@ -63,27 +68,24 @@ class Sorter {
     this.init();
   }
 
-  mergeWrapper() {
-    var imageData = this.canvas
+  sort(algorithm, method) {
+    const imageData = this.canvas
       .getContext("2d")
       .getImageData(0, 0, this.canvas.width, this.canvas.height);
-    mergesort(imageData.data, (d) => {
-      let _this = this;
-      _this.canvas
-        .getContext("2d")
-        .clearRect(0, 0, _this.canvas.width, _this.canvas.height);
-      // imageData.data = d;
-      _this.canvas.getContext("2d").putImageData(imageData, 0, 0);
-    });
-  }
 
-  sort(algorithm, direction) {
     console.log(algorithm);
     switch (algorithm) {
       case "merge-sort":
-        this.mergeWrapper();
+        mergesort(imageData.data, cb(imageData, this.canvas), method);
         break;
       case "quick-sort":
+        quicksort(
+          imageData.data,
+          0,
+          imageData.data.length - 1,
+          cb(imageData, this.canvas),
+          method
+        );
         break;
     }
   }

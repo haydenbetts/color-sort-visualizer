@@ -1,33 +1,34 @@
-const { sleep } = require("../util");
+const { sleep, compare } = require("../util");
 
-const sum = (array, low) => {
-  return array[low] + array[low + 1] + array[low + 2] + array[low + 3];
-};
-
-const mergesort = (array, cb) => {
+const mergesort = async (array, cb, method) => {
   const helper = [];
-  sort(array, helper, 0, array.length - 1, cb);
+  await sort(array, helper, 0, array.length - 1, cb, method);
   return array;
 };
 
-const sort = async (array, helper, low, high, cb) => {
+const sort = async (array, helper, low, high, cb, method) => {
   if (low + 4 < high) {
     const absmid = Math.floor((high + 1 - low) / 2);
     const midgroup = absmid - (absmid % 4);
     const middle = low + midgroup - 1;
-    sort(array, helper, low, middle, cb);
-    if (high - low > 20000) cb(array);
-    // await sleep(500);
-    sort(array, helper, middle + 1, high, cb);
-    if (high - low > 20000) cb(array);
-    // await sleep(500);
-    merge(array, helper, low, middle, high);
-    if (high - low > 20000) cb(array);
-    // await sleep(5);
+    await sort(array, helper, low, middle, cb, method);
+    if (high - low > 20000) {
+      cb(array);
+      await sleep(1);
+    }
+    await sort(array, helper, middle + 1, high, cb, method);
+    if (high - low > 20000) {
+      cb(array);
+      await sleep(1);
+    }
+    merge(array, helper, low, middle, high, method);
+    if (high - low > 20000) {
+      cb(array);
+    }
   }
 };
 
-const merge = (array, helper, low, middle, high) => {
+const merge = (array, helper, low, middle, high, method) => {
   for (let i = low; i <= high; i++) {
     helper[i] = array[i];
   }
@@ -37,7 +38,7 @@ const merge = (array, helper, low, middle, high) => {
   let current = low;
 
   while (helperLeft <= middle && helperRight <= high) {
-    if (sum(helper, helperLeft) < sum(helper, helperRight)) {
+    if (compare(helper, helperLeft, helperRight, method) < 0) {
       array[current] = helper[helperLeft];
       array[current + 1] = helper[helperLeft + 1];
       array[current + 2] = helper[helperLeft + 2];

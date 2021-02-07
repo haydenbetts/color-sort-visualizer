@@ -16,6 +16,7 @@
 
 * {
     font-family: 'Roboto', 'sans-serif';
+    box-sizing: border-box;;
 }
 
 body {
@@ -46,22 +47,34 @@ h1 {
 .subheading-text {
     color: var(--white);
     font-weight: 100;
+    text-align: center;
 }
 
 .form-container {
     border-radius: var(--border-radius);
     margin: 1rem auto 1rem auto;
-    padding: 1rem 0rem 1rem 1rem;
-    width: var(--inner-content-width);
+    padding:2rem;
+    max-width: var(--inner-content-width);
     display: flex;
     flex-direction: row;
-    justify-content: center;
     background: white;
+}
+
+@media only screen and (max-width: 600px) {
+    .form-container {
+        border-radius: var(--border-radius);
+        margin: 1rem auto 1rem auto;
+        padding: 1rem;
+        max-width: var(--inner-content-width);
+        display: flex;
+        flex-direction: row;
+        background: white;
+    }
 }
 
 #form-submit {
     margin: .5rem auto .5rem auto;
-    width: var(--inner-content-width);
+    max-width: var(--inner-content-width);
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
@@ -74,7 +87,7 @@ h1 {
 }
 
 .form-container-description-row {
-    padding-top: .5rem;
+    padding-top: 1rem;
 }
 
 b {
@@ -85,20 +98,69 @@ b {
     background: rgb(243, 244, 246);
 }
 
-#form {
-    width: 75%;
+.form {
+    width: 50%;
+    display: flex;
 }
 
-#form div.fieldset:not(:first-child) {
+.form div.fieldset:not(:first-child) {
     padding-top: 1rem;
+}
+
+.form-col {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50%;
+}
+
+@media only screen and (max-width: 600px) {
+    .form-col {
+        display: flex;
+        flex-direction: column;
+        margin-left: 25%;
+    }    
+}
+
+.form-col-n {
+    padding-left: 4rem;
 }
 
 .canvas-container {
     margin: 1rem auto 1rem auto;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: var(--inner-content-width);
+    overflow-x: hidden;
+}
+
+#performance {
+    width: 100%;
+    display: flex;
     align-items: center;
-    justify-content: center;
+    flex-direction: column;
+    background: white;
+    border-radius: var(--border-radius);
+    margin-left: 1rem;
+    padding: 1rem;
+}
+
+#performance-metrics {
+    width: 100%;
+    display: flex;
+    /* align-items: center;
+    /* flex-direction: column; */
+    /* padding: 1rem; */ 
+}
+
+.metric-title {
+    margin-top: 1rem;
+    /* padding: 0 1rem 1rem 1rem; */
+}
+
+.metric-element {
+    margin-top: 1rem;
+    /* padding: 0 1rem 1rem 1rem; */
 }
 
 fieldset {
@@ -135,4 +197,41 @@ button {
 
 .secondary-button:hover {
     background: var(--white-300);
+}
+
+.canvas-n {
+    margin-left: 1rem;
+}
+
+@media only screen and (max-width: 600px) {
+    .canvas-n {
+        margin-left: .5rem;
+    }
+}
+
+
+canvas {
+    /* border-radius: var(--border-radius); */
+}
+
+.canvas-container div {
+    width: 50%;
+}
+
+.heading-container {
+	background: linear-gradient(-75deg, var(--main-background-color), #2193b3, #63a36b);
+	background-size: 400% 400%;
+	animation: gradient 20s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }

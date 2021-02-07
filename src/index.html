@@ -7,46 +7,94 @@
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <link  rel="stylesheet" type="text/css" href="layout.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.12.1/polyfill.min.js"> </script>
+    <link rel="icon" type="image/png" href="/assets/favicon.png" />
 </head>
 <body>
     <div class="heading-container">
         <h1 class="font-serif">Colorful</h1>
-        <h3 class="subheading-text">Fundamental sorting algorithms visualized with pixel buffers</h3>
+        <h3 class="subheading-text">Fundamental sorting algorithms visualized with colors</h3>
     </div>
     <div id="well">
+    <div id="form">
     <div class="form-container">
         <div id="form-container-description">
-            <div><b>Decide how you'd like to sort</b></div>
-        </div>
-        <div id="form">
-            <div class="fieldset">
-                <fieldset id="algorithm">
-                    <div><b>Algorithms</b></div>
-                    <div class="form-container-description-row">
-                    <input type="radio" name="algorithm" id="merge-sort" value="merge-sort" >
-                    <label for="merge-sort">Merge Sort</label>
-                    </div>
-                    <div class="form-container-description-row">
-                    <input type="radio" name="algorithm" id="quick-sort" value="quick-sort">
-                    <label for="quick-sort">Quicksort</label>
-                    </div>
-                </fieldset>
+            <div><b>Choose two sorting algorithms</b></div>
+            <div class="form-container-description-row">Any sorting algorithm than can operate on integers can sort colors. You can learn more about them
+                <a href="" onclick="window.open('https://medium.com/basecs/tagged/sorting-algorithms')">here.</a></div>
             </div>
-            <div class="fieldset">
-                <fieldset id="order">
-                    <div><b>Order</b></div>
-                    <div class="form-container-description-row">
-                    <input type="radio" name="order" id="ascending" value="ascending" name="group2">
-                    <label for="ascending">Ascending</label>
-                    </div>
-                    <div class="form-container-description-row">
-                    <input type="radio" name="order" id="descending" value="descending" name="group2">
-                    <label for="descending">Descending</label>
-                    </div>
-                </fieldset>
+        <div class="form">
+            <div class="form-col">
+                <div class="fieldset">
+                    <fieldset id="algorithm-a">
+                        <div><b>Algorithm A</b></div>
+                        <div class="form-container-description-row">
+                        <input type="radio" name="algorithm-a" id="merge-sort" value="merge-sort" >
+                        <label for="merge-sort">Merge Sort</label>
+                        </div>
+                        <div class="form-container-description-row">
+                        <input type="radio" name="algorithm-a" id="quick-sort" value="quick-sort">
+                        <label for="quick-sort">Quicksort</label>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="fieldset">
+                    <fieldset id="algorithm-b">
+                        <div><b>Algorithm B</b></div>
+                        <div class="form-container-description-row">
+                        <input type="radio" name="algorithm-b" id="merge-sort" value="merge-sort" >
+                        <label for="merge-sort">Merge Sort</label>
+                        </div>
+                        <div class="form-container-description-row">
+                        <input type="radio" name="algorithm-b" id="quick-sort" value="quick-sort">
+                        <label for="quick-sort">Quicksort</label>
+                        </div>
+                    </fieldset>
+                </div>
+                <!-- <div class="fieldset">
+                    <fieldset id="order">
+                        <div><b>Order</b></div>
+                        <div class="form-container-description-row">
+                        <input type="radio" name="order" id="ascending" value="ascending" name="group2">
+                        <label for="ascending">Ascending</label>
+                        </div>
+                        <div class="form-container-description-row">
+                        <input type="radio" name="order" id="descending" value="descending" name="group2">
+                        <label for="descending">Descending</label>
+                        </div>
+                    </fieldset>
+                </div> -->
             </div>
         </div>
     </div>
+    <div class="form-container">
+        <div id="form-container-description">
+            <div><b>Choose a color sorting method</b></div>
+            <div class="form-container-description-row">There are lots of ways to sort colors, you can learn about the math behind them 
+                <a href="" onclick="window.open('https://www.alanzucconi.com/2015/09/30/colour-sorting/')">here.</a></div>
+        </div>
+        <div class="form">
+            <div class="form-col">
+                <div class="fieldset">
+                    <fieldset id="method">
+                        <div><b>Sorting Method</b></div>
+                        <div class="form-container-description-row">
+                            <input type="radio" name="method" id="hsv" value="hsv">
+                            <label for="quick-sort">Hue</label>
+                            </div>
+                        <div class="form-container-description-row">
+                        <input type="radio" name="method" id="rgb" value="rgb" >
+                        <label for="rgb">Red</label>
+                        </div>
+                        <div class="form-container-description-row">
+                        <input type="radio" name="method" id="luminosity" value="luminosity">
+                        <label for="luminosity">Luminosity</label>
+                        </div>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
     <div id="form-submit">
         <button type="button" id="randomize" class="secondary-button">
             Randomize
@@ -58,7 +106,21 @@
         </div>
     </div>
     <div class="canvas-container">
-        <canvas width="1000" height="1000"> </canvas>
+        <div>
+            <canvas id="canvas-a" height="500"> </canvas>
+        </div>
+        <div class="canvas-n">
+            <canvas id="canvas-b" height="500"> </canvas>
+        </div>
+        <!-- <div id="performance">
+            <span>Performance</span>
+            <div id="performance-metrics">
+                <div id="heap">
+                    <div class="metric-title"> Heap Usage:</div>
+                    <div id="heap-usage" class="metric-element"> Awaiting Data</div>
+                </div>
+            </div>
+        </div> -->
     </div>
     </div>
 </body>
