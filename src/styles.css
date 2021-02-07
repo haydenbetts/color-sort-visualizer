@@ -214,6 +214,8 @@ button {
 canvas {
     cursor: pointer;
     /* border-radius: var(--border-radius); */
+    touch-action: none;
+
 }
 
 .canvas-container div {
