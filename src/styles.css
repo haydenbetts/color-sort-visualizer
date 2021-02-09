@@ -213,12 +213,16 @@ button {
 }
 
 
-canvas {
-    cursor: pointer;
+canvas, canvas:active, canvas:focus {
+    cursor: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAQAAABKfvVzAAAAiElEQVQ4jdXOOw6CUBRF0dvJDEwcgDPBDzgyGgoN03g2JjYOSYJ87baNn9fd+2yAXa+THJE5RkpLHsKfAMYJyZvDPYz3xDrf/8uH8fnO4xuVi3AO4iJEXIGBrcYKah6cWBDhFC5Cwaej7Uj9HVQWvuRXo/MVF2/g9EHm8ZK15dKBGx0NzsSn1Qut984SIDg8HQAAAABJRU5ErkJggg==") 0 24, pointer;
     /* border-radius: var(--border-radius); */
     /* touch-action: none; */
 
 }
+
+/* canvas:active, canvas:focus {
+    cursor: w-resize
+} */
 
 .canvas-container div {
     width: 50%;

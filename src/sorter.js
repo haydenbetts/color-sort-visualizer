@@ -82,7 +82,7 @@ class Sorter {
         quicksort(
           imageData.data,
           0,
-          imageData.data.length - 1,
+          imageData.data.length - 4,
           cb(imageData, this.canvas),
           method
         );

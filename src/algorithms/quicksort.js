@@ -1,18 +1,32 @@
 const { sleep, compare, sum } = require("../util");
 
-const quicksort = async (arr, left = 0, right = arr.length - 1, cb, method) => {
-  let len = arr.length,
-    index;
+const quicksort = async (
+  arr,
+  left = 0,
+  right = arr.length - 4,
+  cb = () => {},
+  method = "rgb"
+) => {
+  let len = right - left;
+  let index;
 
   if (len > 4) {
     index = partition(arr, left, right, method);
 
     if (left < index - 1) {
-      quicksort(arr, left, index - 1, cb, method);
+      await quicksort(arr, left, index - 4, cb, method);
+      if (len > 20000) {
+        cb(arr);
+        await sleep(1);
+      }
     }
 
     if (index < right) {
-      quicksort(arr, index, right, cb, method);
+      await quicksort(arr, index, right, cb, method);
+      if (len > 20000) {
+        cb(arr);
+        await sleep(1);
+      }
     }
   }
 
@@ -21,7 +35,6 @@ const quicksort = async (arr, left = 0, right = arr.length - 1, cb, method) => {
 
 const swap = (array, i, j) => {
   const temp = [array[j], array[j + 1], array[j + 2], array[j + 3]];
-
   array[j] = array[i];
   array[j + 1] = array[i + 1];
   array[j + 2] = array[i + 2];
@@ -34,17 +47,19 @@ const swap = (array, i, j) => {
 };
 
 const partition = (arr, left, right, method) => {
-  let middle = Math.floor((right + left) / 2),
-    pivot = sum(arr, middle, method),
-    i = left,
-    j = right;
+  let mid = Math.floor((right + left) / 2);
+  let middle = mid - (mid % 4);
+  let pivot = sum(arr, middle, method);
+  let i = left;
+  let j = right;
 
   while (i <= j) {
-    while (sum(arr, arr[i], method) < pivot) {
+    // console.log(i, j);
+    while (sum(arr, i, method) < pivot) {
       i += 4;
     }
 
-    while (sum(arr, arr[j], method) > pivot) {
+    while (sum(arr, j, method) > pivot) {
       j -= 4;
     }
 
