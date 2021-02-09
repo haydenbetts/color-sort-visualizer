@@ -253,6 +253,12 @@ canvas, canvas:active, canvas:focus {
 }
 
 @media only screen and (max-width: 600px) {
+    .dt-accent {
+       display: none;
+    }
+}
+
+@media only screen and (max-width: 600px) {
     #social {
         position: absolute;
         top: 1rem;
