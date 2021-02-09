@@ -83,7 +83,7 @@ class Sorter {
           imageData.data,
           0,
           imageData.data.length - 4,
-          cb(imageData, this.canvas),
+          cb(imageData, this.canvas, timeout),
           method
         );
         break;
