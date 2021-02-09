@@ -35,11 +35,12 @@ const getRowIndices = (data, width) => {
 
 const ROW_WIDTH = 4; //px
 
-const cb = (imageData, canvas) => {
-  return function (d) {
+const cb = (imageData, canvas, timeout) => {
+  return async function (d) {
     canvas.getContext("2d").clearRect(0, 0, canvas.width, canvas.height);
     imageData.data = d;
     canvas.getContext("2d").putImageData(imageData, 0, 0);
+    await sleep(timeout);
   };
 };
 
@@ -68,14 +69,14 @@ class Sorter {
     this.init();
   }
 
-  sort(algorithm, method) {
+  sort(algorithm, method, timeout) {
     const imageData = this.canvas
       .getContext("2d")
       .getImageData(0, 0, this.canvas.width, this.canvas.height);
 
     switch (algorithm) {
       case "merge-sort":
-        mergesort(imageData.data, cb(imageData, this.canvas), method);
+        mergesort(imageData.data, cb(imageData, this.canvas, timeout), method);
         break;
       case "quick-sort":
         quicksort(

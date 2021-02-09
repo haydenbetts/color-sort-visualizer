@@ -12,20 +12,21 @@ const quicksort = async (
 
   if (len > 4) {
     index = partition(arr, left, right, method);
+    if (len > 20000) {
+      await cb(arr);
+    }
 
     if (left < index - 1) {
       await quicksort(arr, left, index - 4, cb, method);
       if (len > 20000) {
-        cb(arr);
-        await sleep(5);
+        await cb(arr);
       }
     }
 
     if (index < right) {
       await quicksort(arr, index, right, cb, method);
       if (len > 20000) {
-        cb(arr);
-        await sleep(5);
+        await cb(arr);
       }
     }
   }

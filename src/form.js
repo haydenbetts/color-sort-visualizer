@@ -11,6 +11,7 @@ class Form {
       algorithmB: "merge-sort",
       order: "ascending",
       method: "hsv",
+      speed: 50,
     };
 
     this.initializeState();
@@ -37,6 +38,12 @@ class Form {
         case "method":
           let method = f.querySelector(`input[value="${this.state.method}"]`);
           method.checked = true;
+          break;
+        case "speed":
+          let speed = f.querySelector(
+            `input[name="speed"][value="${this.state.speed}"]`
+          );
+          speed.checked = true;
           break;
         // case "order":
         //   let activeOrder = f.querySelector(
@@ -69,8 +76,16 @@ class Form {
       button.onclick = (e) => {
         switch (e.target.id) {
           case "sort":
-            this.sorters[0].sort(this.state.algorithmA, this.state.method);
-            this.sorters[1].sort(this.state.algorithmB, this.state.method);
+            this.sorters[0].sort(
+              this.state.algorithmA,
+              this.state.method,
+              this.state.speed
+            );
+            this.sorters[1].sort(
+              this.state.algorithmB,
+              this.state.method,
+              this.state.speed
+            );
             break;
           case "randomize":
             this.sorters[0].randomize();
