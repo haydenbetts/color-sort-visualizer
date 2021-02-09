@@ -73,7 +73,6 @@ class Sorter {
       .getContext("2d")
       .getImageData(0, 0, this.canvas.width, this.canvas.height);
 
-    console.log(algorithm);
     switch (algorithm) {
       case "merge-sort":
         mergesort(imageData.data, cb(imageData, this.canvas), method);

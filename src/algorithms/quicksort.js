@@ -17,7 +17,7 @@ const quicksort = async (
       await quicksort(arr, left, index - 4, cb, method);
       if (len > 20000) {
         cb(arr);
-        await sleep(1);
+        await sleep(5);
       }
     }
 
@@ -25,7 +25,7 @@ const quicksort = async (
       await quicksort(arr, index, right, cb, method);
       if (len > 20000) {
         cb(arr);
-        await sleep(1);
+        await sleep(5);
       }
     }
   }

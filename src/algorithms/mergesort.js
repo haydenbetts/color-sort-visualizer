@@ -14,12 +14,12 @@ const sort = async (array, helper, low, high, cb, method) => {
     await sort(array, helper, low, middle, cb, method);
     if (high - low > 20000) {
       cb(array);
-      await sleep(1);
+      await sleep(5);
     }
     await sort(array, helper, middle + 1, high, cb, method);
     if (high - low > 20000) {
       cb(array);
-      await sleep(1);
+      await sleep(5);
     }
     merge(array, helper, low, middle, high, method);
     if (high - low > 20000) {
