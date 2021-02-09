@@ -229,7 +229,7 @@ canvas, canvas:active, canvas:focus {
 }
 
 .heading-container {
-	background: linear-gradient(-75deg, var(--main-background-color), #2193b3, #63a36b);
+	background: linear-gradient(-75deg, var(--main-background-color), #bfc72e, #2193b3, #63a36b);
 	background-size: 400% 400%;
 	animation: gradient 20s ease infinite;
 }
